@@ -18,4 +18,4 @@ CreatorFlow is a simple content planning app designed to help creators organize,
 This project was created to explore web development, UI design, and building digital tools that help creators manage their workflow.
 
 ## Live Demo
-https://creatorflowbluefd.netlify.app/
+https://bluefd.github.io/creatorflow/
