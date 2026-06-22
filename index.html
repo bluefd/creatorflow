@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <title>CreatorFlow</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ── Header ─────────────────────────────── -->
+  <!-- ── Navigation bar ─────────────────────── -->
   <header>
     <div class="header-inner">
       <div class="logo">
@@ -20,50 +22,55 @@
           <line x1="12" y1="5" x2="12" y2="19"/>
           <line x1="5" y1="12" x2="19" y2="12"/>
         </svg>
-        Add Idea
+        New Idea
       </button>
     </div>
   </header>
 
-  <!-- ── Main ───────────────────────────────── -->
+  <!-- ── Main content ───────────────────────── -->
   <main>
-    <div class="page-header">
-      <div>
-        <h2 class="page-title">Pipeline</h2>
-        <p class="page-subtitle">Organize and track your content creation process.</p>
-      </div>
-      <div id="tabs" class="tabs" role="tablist"></div>
+    <div class="page-top">
+      <h1 class="page-title">Pipeline</h1>
+      <p class="page-subtitle">Everything you're working on, all in one place.</p>
+    </div>
+
+    <div class="segment-wrap">
+      <div id="tabs" class="segmented-control" role="tablist"></div>
     </div>
 
     <div id="card-container"></div>
   </main>
 
-  <!-- ── Modal ──────────────────────────────── -->
+  <!-- ── Modal sheet ────────────────────────── -->
   <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal">
 
+      <div class="sheet-handle"></div>
+
       <div class="modal-header">
-        <h2 id="modal-title">New Video Idea</h2>
+        <h2 id="modal-title">New Idea</h2>
+        <button class="btn btn-plain" id="btn-cancel">Cancel</button>
       </div>
 
       <div class="modal-body">
         <form id="idea-form" novalidate>
 
           <div class="form-group">
-            <label for="field-title">Title</label>
+            <label for="field-title">Video Title</label>
             <input
               type="text"
               id="field-title"
-              placeholder="e.g. 10 Tips for Better Lighting"
+              placeholder="What's this video about?"
               maxlength="100"
+              autocomplete="off"
               data-testid="input-title"
             />
             <span class="field-error" id="error-title"></span>
           </div>
 
-          <div class="form-row" style="margin-top: 18px;">
+          <div class="form-row" style="margin-top: 16px;">
             <div class="form-group">
-              <label for="field-status">Status</label>
+              <label for="field-status">Stage</label>
               <select id="field-status" data-testid="select-status">
                 <option value="idea">Idea</option>
                 <option value="scripting">Scripting</option>
@@ -79,19 +86,20 @@
               <input
                 type="text"
                 id="field-category"
-                placeholder="e.g. Tutorial"
+                placeholder="Tutorial, Vlog, Review…"
                 maxlength="50"
+                autocomplete="off"
                 data-testid="input-category"
               />
               <span class="field-error" id="error-category"></span>
             </div>
           </div>
 
-          <div class="form-group" style="margin-top: 18px;">
-            <label for="field-description">Description (Optional)</label>
+          <div class="form-group" style="margin-top: 16px;">
+            <label for="field-description">Notes</label>
             <textarea
               id="field-description"
-              placeholder="Key talking points or concepts..."
+              placeholder="Hook ideas, talking points, references — anything worth remembering."
               maxlength="500"
               data-testid="input-description"
             ></textarea>
@@ -103,19 +111,18 @@
 
       <div class="modal-footer">
         <div>
-          <button class="btn btn-danger" id="btn-delete" data-testid="button-delete-idea" style="display:none;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button class="btn-danger" id="btn-delete" data-testid="button-delete-idea" style="display:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
               <polyline points="3 6 5 6 21 6"/>
               <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
               <path d="M10 11v6"/><path d="M14 11v6"/>
               <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
             </svg>
-            Delete
+            Remove Video
           </button>
         </div>
         <div class="modal-footer-right">
-          <button class="btn btn-ghost" id="btn-cancel">Cancel</button>
-          <button class="btn btn-primary" id="btn-save" data-testid="button-save-idea">Create Idea</button>
+          <button class="btn btn-primary" id="btn-save" data-testid="button-save-idea">Add</button>
         </div>
       </div>
 
